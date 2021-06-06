@@ -8,7 +8,7 @@ O objetivo é descobrir aspectos qualitativos e quantitativos sobre esses medica
 - Há alguma relação entre o preço do medicamento e seu país de origem?
 - ...
 
-As bibliotecas[Python](https://www.python.org/) utilizadas nessa análise são:
+As bibliotecas [Python](https://www.python.org/) utilizadas nessa análise são:
 - [Pandas](https://pandas.pydata.org/) para manipulação do dataset
 - [Matplotlib](https://matplotlib.org/) para visualização de dados e construção de gráficos
 - [Unidecode](https://pypi.org/project/Unidecode/) para tratamento de texto
