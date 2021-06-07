@@ -1,15 +1,18 @@
 import requests
+import pandas as pd
 from bs4 import BeautifulSoup
 
 url = "https://pt.wikipedia.org/wiki/Lista_de_c%C3%B3digos_de_pa%C3%ADs_GS1"
 req = requests.get(url)
 soup = BeautifulSoup(req.content, 'html.parser')
 
-# pegar o texto da tabela com códigos
+# pega a tabela com códigos
 tabela_codigos = soup.find(name='table')
 itens_tabela = tabela_codigos.find_all('tr')
 
-dic_codigo_pais = {}
+paises = []
+codigos_gs1 = []
+dic_codigos_pais = {}
 
 def normaliza_codigo(codigo):
     lista_codigos = []
@@ -50,7 +53,12 @@ for i in range(1,len(itens_tabela)):
     
     if pais != '':
         for codigo in lista_codigos:
-            dic_codigo_pais[codigo] = pais
+            codigos_gs1.append(codigo)
+            paises.append(pais)
+    
 
-for key, value in dic_codigo_pais.items():
-    print(key, value)
+dic_codigos_pais['codigo_gs1'] = codigos_gs1
+dic_codigos_pais['pais'] = paises
+
+codigos_gs1 = pd.DataFrame(dic_codigos_pais)
+codigos_gs1.to_csv('./dados/codigos_gs1.csv')
